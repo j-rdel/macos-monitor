@@ -6,8 +6,9 @@ cd "$(dirname "$0")"
 swift build -c release
 APP="build/MacMonitor.app"
 rm -rf "$APP"
-mkdir -p "$APP/Contents/MacOS"
+mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 cp .build/release/MacMonitor "$APP/Contents/MacOS/"
+cp Resources/AppIcon.icns "$APP/Contents/Resources/"
 cp Resources/Info.plist "$APP/Contents/"
 codesign --force --sign - "$APP" >/dev/null
 echo "✓ $APP"
